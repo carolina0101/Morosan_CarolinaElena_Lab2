@@ -7,14 +7,19 @@
         mc:Ignorable="d"
         Title="Virtual Doughnuts Factory" Height="450" Width="800" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
     <Grid>
-        <Label x:Name="IblTitle" Content="Doughnuts - Bake &amp; Sale" FontFamily="Arial Black" FontWeight="Bold" FontSize="24" Margin="156,10,232,372"/>
-        <GroupBox x:Name="gbRaised" Header="Raised" FontWeight="Normal" Margin="27,67,514,221">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="23*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="IblTitle" Content="Doughnuts - Bake &amp; Sale" FontFamily="Arial Black" FontWeight="Bold" FontSize="24" Margin="92,10,232,372" Grid.Column="2"/>
+        <GroupBox x:Name="gbRaised" Header="Raised" FontWeight="Normal" Margin="26,67,514,221" Grid.ColumnSpan="2" Grid.Column="1">
             <Canvas>
                 <TextBox x:Name="txtChocolateFilled" Text="0" TextWrapping="Wrap" Width="80" IsReadOnly="True" Canvas.Left="96" Canvas.Top="10" Height="23"/>
             </Canvas>
-          
+
         </GroupBox>
-        <GroupBox x:Name="gbFilled" Header="Filled" FontWeight="Bold" Margin="483,67,36,221">
+        <GroupBox x:Name="gbFilled" Header="Filled" FontWeight="Bold" Margin="419,67,36,221" Grid.Column="2">
             <Canvas>
                 <Label x:Name="IblGlazedRaised" Content="Glazed" Canvas.Top="12" RenderTransformOrigin="0.5,0.5" Canvas.Left="-438">
                     <Label.RenderTransform>
@@ -30,10 +35,10 @@
                 <Label x:Name="IblLemonFilled" Content="Lemon" RenderTransformOrigin="1.151,1.392" Canvas.Left="10" Canvas.Top="10"/>
             </Canvas>
         </GroupBox>
-        <TextBox x:Name="txtLemonFilled" Text="0" TextWrapping="Wrap" SelectionTextBrush="White" IsReadOnly="True" Margin="544,377,164,31"/>
-        <Label x:Name="IblChocolateFilled" Content="Chocolate" Margin="501,126,147,283"/>
-        <Label x:Name="IblVanillaFilled" Content="Vanilla" Margin="501,166,164,242"/>
-        <TextBox x:Name="txtVanillaFilled" Text="0" TextWrapping="Wrap" IsReadOnly="True" Margin="568,229,206,112" RenderTransformOrigin="0.5,0.5">
+        <TextBox x:Name="txtLemonFilled" Text="0" TextWrapping="Wrap" SelectionTextBrush="White" IsReadOnly="True" Margin="480,377,164,31" Grid.Column="2"/>
+        <Label x:Name="IblChocolateFilled" Content="Chocolate" Margin="437,126,147,283" Grid.Column="2"/>
+        <Label x:Name="IblVanillaFilled" Content="Vanilla" Margin="437,166,164,242" Grid.Column="2"/>
+        <TextBox x:Name="txtVanillaFilled" Text="0" TextWrapping="Wrap" IsReadOnly="True" Margin="504,229,206,112" RenderTransformOrigin="0.5,0.5" Grid.Column="2">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -43,7 +48,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <GroupBox x:Name="gbSale" Header="Current Sale" FontWeight="Bold" Margin="7,243,15,21" RenderTransformOrigin="0.5,0.5">
+        <GroupBox x:Name="gbSale" Header="Current Sale" FontWeight="Bold" Margin="6,243,15,21" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.Column="1">
             <GroupBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -66,9 +71,37 @@
                 </ComboBox>
             </Canvas>
         </GroupBox>
-        <Button x:Name="btnAddToSale" Content="Add To Sale" Margin="669,301,36,108"/>
-        <Button x:Name="btnRemoveItem" Content="Remove item" Margin="669,331,36,80"/>
-        <Button x:Name="btnCheckOut" Content="Check Out" FontWeight="Bold" Margin="652,374,36,31"/>
-        <Label x:Name="IblSugarRaised" Content="Sugar" Margin="52,126,675,277"/>
+        <Button x:Name="btnAddToSale" Content="Add To Sale" Margin="605,301,36,108" Grid.Column="2"/>
+        <Button x:Name="btnRemoveItem" Content="Remove item" Margin="605,331,36,80" Grid.Column="2"/>
+        <Button x:Name="btnCheckOut" Content="Check Out" FontWeight="Bold" Margin="588,374,36,31" Grid.Column="2"/>
+        <Label x:Name="IblSugarRaised" Content="Sugar" Margin="51,126,675,277" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <TextBox x:Name="txtChocolateFilled_Copy" Text="0" TextWrapping="Wrap" IsReadOnly="True" Margin="66,128,590,282" Grid.Column="2"/>
+        <TextBox x:Name="txtChocolateFilled_Copy1" Text="0" TextWrapping="Wrap" IsReadOnly="True" Margin="520,98,136,313" Grid.Column="2"/>
+        <TextBox x:Name="txtChocolateFilled_Copy2" Text="0" TextWrapping="Wrap" IsReadOnly="True" Margin="520,134,136,277" Grid.Column="2"/>
+        <TextBox x:Name="txtChocolateFilled_Copy3" Text="0" TextWrapping="Wrap" IsReadOnly="True" Margin="520,169,136,242" Grid.Column="2"/>
+
+        <Menu x:Name="mnuMain" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top"
+Width="115" Margin="10,10,0,0" Grid.ColumnSpan="3">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" Click="exitToolStripMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Doughnuts" Width="69">
+                <MenuItem Header="Make">
+                    <MenuItem Header="Raised">
+                        <MenuItem x:Name="glazedToolStripMenuItem" Header="Glazed"
+                      Click="glazedToolStripMenuItem_Click" IsCheckable="True"/>
+                        <MenuItem x:Name="sugarToolStripMenuItem" Header="Sugar" IsCheckable="True" Checked ="sugarToolStripMenuItem_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Filled"/>
+                </MenuItem>
+                <MenuItem x:Name="mnuStop" Header="Stop"
+Click="stopToolStripMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Make"/>
+            <MenuItem Header="Filled" IsCheckable="True"/>
+            <MenuItem Header="Raised"/>
+            <MenuItem Header="Sugar" IsCheckable="True"/>
+            <MenuItem Header="Glazed" IsCheckable="True"/>
+        </Menu>
     </Grid>
 </Window>
